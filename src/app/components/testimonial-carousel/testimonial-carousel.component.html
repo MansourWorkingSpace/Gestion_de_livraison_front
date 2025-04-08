@@ -1,0 +1,15 @@
+<div id="testimonialCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div
+        class="carousel-item"
+        *ngFor="let t of testimonials; let i = index"
+        [class.active]="i === 0"
+      >
+        <blockquote class="blockquote text-center">
+          <p class="mb-0">{{ t.text }}</p>
+          <footer class="blockquote-footer my-2">{{ t.author }}</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  

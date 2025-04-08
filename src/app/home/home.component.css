@@ -1,0 +1,55 @@
+body {
+  padding-top: 70px; /* to avoid navbar overlapping content */
+}
+.custom-navbar {
+  background-color: #205781;
+}
+
+.main-section {
+  background-color: #f6f8d5;
+  min-height: 80vh;
+  padding: 60px 0;
+  margin-bottom: 0;
+}
+
+.main-title {
+  color: #205781;
+}
+
+.main-subtitle {
+  color: #4f959d;
+  font-weight: 500;
+}
+
+.custom-footer {
+  background-color: #4f959d;
+  color: white;
+  margin-top: 0;
+  border-top: none;
+}
+#feature-card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  #feature-card-container .col-md-3 {
+    flex: 0 0 22%; /* Make the cards take up roughly 22% of the width on medium screens */
+    max-width: 25%; /* Ensure they don't exceed the width on larger screens */
+    margin-bottom: 30px; /* Space between rows */
+  }
+  
+  @media (max-width: 768px) {
+    #feature-card-container .col-md-3 {
+      flex: 0 0 48%; /* Take up 48% of the width on smaller screens */
+      max-width: 48%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #feature-card-container .col-md-3 {
+      flex: 0 0 100%; /* Take up full width on very small screens */
+      max-width: 100%;
+    }
+  }
+  

@@ -1,0 +1,75 @@
+<!-- Navbar personnalisée -->
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container">
+      <a class="navbar-brand text-white fw-bold" routerLink="/">Delivery Manager</a>
+  
+      <button
+        class="navbar-toggler text-white my-1"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Auth buttons only -->
+          <li class="nav-item">
+            <a class="btn btn-outline-light btn-sm me-2 my-1" routerLink="/login">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light btn-sm my-1" routerLink="/register">Créer un compte</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Section -->
+  <main class="main-section">
+    <div class="container text-center">
+      <h1 class="fw-bold mb-4 main-title">Bienvenue sur Delivery Manager</h1>
+      <p class="lead mb-5 main-subtitle">
+        Une plateforme unifiée pour gérer efficacement vos livraisons entre
+        clients, commerçants et livreurs.
+      </p>
+  
+      <div class="row justify-content-center mb-0">
+        <div class="col-md-3 mb-4" *ngFor="let role of roles">
+          <app-role-card
+            [title]="role.title"
+            [description]="role.description"
+            [link]="role.link"
+          ></app-role-card>
+        </div>
+      </div>
+    </div>
+  
+    <div id="feature-card-container" class="row text-center mt-5 d-flex justify-content-center flex-wrap">
+        <div class="col-md-3 mb-4" *ngFor="let feature of features">
+          <app-feature-card
+            [icon]="feature.icon"
+            [title]="feature.title"
+            [description]="feature.description"
+          ></app-feature-card>
+        </div>
+      </div>
+      
+  
+    <app-testimonial-carousel [testimonials]="homeTestimonials"></app-testimonial-carousel>
+  </main>
+  
+  <!-- Footer personnalisé -->
+  <footer class="custom-footer py-4">
+    <div class="container text-center">
+      <p class="mb-1 fw-bold">© 2025 Delivery Manager</p>
+      <small>
+        Gérer vos livraisons en toute simplicité — Clients, Commerçants, Livreurs, Admin
+      </small>
+    </div>
+  </footer>
+  

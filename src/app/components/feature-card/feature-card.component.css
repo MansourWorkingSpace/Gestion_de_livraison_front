@@ -1,0 +1,32 @@
+.feature-card {
+    background-color: #205781; /* deep blue */
+    color: white;
+    border-radius: 1rem;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: fit-content;
+    height: 110px;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-card i {
+    font-size: 2rem;
+    color: #98d2c0; /* mint accent */
+  }
+  
+  .feature-card h6 {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #f6f8d5; /* light pastel yellow for better contrast */
+  }
+  
+  .feature-card p {
+    font-size: 0.9rem;
+    color: #e0f2ef; /* very soft readable text */
+  }
+  
