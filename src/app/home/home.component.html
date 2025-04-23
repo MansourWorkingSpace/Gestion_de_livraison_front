@@ -1,34 +1,3 @@
-<!-- Navbar personnalisée -->
-<nav class="navbar navbar-expand-lg custom-navbar">
-    <div class="container">
-      <a class="navbar-brand text-white fw-bold" routerLink="/">Delivery Manager</a>
-  
-      <button
-        class="navbar-toggler text-white my-1"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <!-- Auth buttons only -->
-          <li class="nav-item">
-            <a class="btn btn-outline-light btn-sm me-2 my-1" routerLink="/login">Se connecter</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-light btn-sm my-1" routerLink="/register">Créer un compte</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
   <!-- Main Section -->
   <main class="main-section">
     <div class="container text-center">
@@ -62,14 +31,5 @@
   
     <app-testimonial-carousel [testimonials]="homeTestimonials"></app-testimonial-carousel>
   </main>
-  
-  <!-- Footer personnalisé -->
-  <footer class="custom-footer py-4">
-    <div class="container text-center">
-      <p class="mb-1 fw-bold">© 2025 Delivery Manager</p>
-      <small>
-        Gérer vos livraisons en toute simplicité — Clients, Commerçants, Livreurs, Admin
-      </small>
-    </div>
-  </footer>
+    
   
