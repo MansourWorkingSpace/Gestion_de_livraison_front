@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    this.authService.loginClient(this.email, this.motdepasse)
+    this.authService.login(this.email, this.motdepasse)
     .subscribe({
       next: (response) => {
         console.log('Login successful', response);

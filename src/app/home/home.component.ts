@@ -23,7 +23,7 @@ export class HomeComponent {
       title: 'Commerçant',
       description:
         'Gérez vos ventes, créez des factures, et suivez les achats de vos clients.',
-      link: '/register-merchant',
+      link: '/register-commercant',
     },
     {
       title: 'Livreur',

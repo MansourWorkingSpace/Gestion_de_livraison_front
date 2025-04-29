@@ -11,28 +11,22 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  loginClient(email: string, motdepasse: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/loginClient`, { email, motdepasse }).pipe(
+  login(email: string, motdepasse: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { email, motdepasse }).pipe(
       tap((response: any) => {
         sessionStorage.setItem('connectedUser', JSON.stringify(response));
       })
     );
   }
 
-  registerClient(clientData: {
-    nom: string;
-    prenom: string;
-    age: number | null;
-    tlf: string;
-    email: string;
-    statut: string;
-    motdepasse: string;
-    photodeprofil: string;
-    adresse: string;
-    codePostale: string;
-    zip: string;
-  }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/registerClient`, clientData); // Use the full API URL
+  registerClient(clientData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registerClient`, clientData);
+  }
+  registerCommercant(commercantData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registerCommercant`, commercantData);
   }
   
+  registerLivreur(livreurData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registerLivreur`, livreurData);
+  }
 }
