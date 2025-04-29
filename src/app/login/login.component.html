@@ -1,12 +1,23 @@
 <div class="login-container">
   <h2>Connexion</h2>
   <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" [(ngModel)]="email" required>
+    
+    <app-input-field
+      label="Email"
+      type="email"
+      id="email"
+      name="email"
+      [(value)]="email"
+    ></app-input-field>
 
-    <label for="motdepasse">Mot de passe</label>
-    <input type="password" id="motdepasse" name="motdepasse" [(ngModel)]="motdepasse" required>
+    <app-input-field
+      label="Mot de passe"
+      type="password"
+      id="motdepasse"
+      name="motdepasse"
+      [(value)]="motdepasse"
+    ></app-input-field>
 
-    <input type="submit" value="Se connecter">
+    <app-submit-button label="Se Connecter"></app-submit-button>
   </form>
 </div>

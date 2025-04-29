@@ -11,32 +11,3 @@ h2 {
   text-align: center;
   color: #205781;
 }
-
-label {
-  display: block;
-  margin-top: 15px;
-  color: #205781;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #205781;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-input[type="submit"] {
-  background-color: #4f959d;
-  color: #fff;
-  border: none;
-  margin-top: 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-input[type="submit"]:hover {
-  background-color: #205781;
-}

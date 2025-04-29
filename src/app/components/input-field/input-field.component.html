@@ -1,0 +1,9 @@
+<label [for]="id">{{ label }}</label>
+<input
+  [type]="type"
+  [id]="id"
+  (input)="onInputChange($event)"
+  [name]="name"
+  [required]="required"
+  [value]="value"
+/>

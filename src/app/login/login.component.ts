@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { InputFieldComponent } from "../components/input-field/input-field.component";
+import { SubmitButtonComponent } from "../components/submit-button/submit-button.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, InputFieldComponent, SubmitButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
