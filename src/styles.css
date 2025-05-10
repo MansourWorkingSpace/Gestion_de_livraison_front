@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+:root {
+    --primary-dark: #2c3e50;       /* Bleu foncé pour titres */
+    --primary-light: #3498db;      /* Bleu clair pour accents */
+    --background-light: #ecf0f1;   /* Gris très clair pour fond */
+    --card-bg: #ffffff;            /* Blanc pur pour cartes */
+    --success-color: #2ecc71;      /* Vert */
+    --warning-color: #e67e22;      /* Orange */
+    --danger-color: #e74c3c;       /* Rouge */
+    --text-dark: #2c3e50;          /* Texte foncé */
+    --text-light: #7f8c8d;         /* Texte secondaire */
+    --border-radius: 10px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Appliquer le fond clair à toute l'application */
+  body, app-root {
+    background-color: var(--background-light);
+    min-height: 100vh;
+    display: block;
+  }
