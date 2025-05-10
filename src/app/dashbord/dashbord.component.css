@@ -1,0 +1,93 @@
+/* Style général pour l'application */
+:root {
+    --primary-color: #1d5788; /* Bleu marine comme dans l'image */
+    --secondary-color: #fef9db; /* Beige très clair du fond */
+    --accent-color: #135c8e; /* Bleu légèrement plus foncé pour les boutons */
+    --text-color: #333;
+    --light-text: #fff;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  /* En-tête commun */
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    margin-bottom: 20px;
+  }
+  
+  .header-section h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header-section span {
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  .header-section i {
+    font-size: 24px;
+  }
+  
+  /* Style du tableau */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  thead {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Boutons */
+  button {
+    background-color: var(--accent-color);
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    background-color: #719fbe;  
+  }
+  
+  button:hover {
+    background-color: #0e4a73;
+  }
+  
+  /* États de la commande */
+  td:nth-child(4) {
+    font-weight: bold;
+  }
