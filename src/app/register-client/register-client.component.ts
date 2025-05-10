@@ -4,12 +4,13 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { InputFieldComponent } from "../components/input-field/input-field.component";
 import { SubmitButtonComponent } from "../components/submit-button/submit-button.component";
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-register-client',
   standalone: true,
-  imports: [FormsModule, InputFieldComponent, SubmitButtonComponent],
+  imports: [FormsModule, InputFieldComponent, SubmitButtonComponent,CommonModule],
   templateUrl: './register-client.component.html',
   styleUrl: './register-client.component.css'
 })
