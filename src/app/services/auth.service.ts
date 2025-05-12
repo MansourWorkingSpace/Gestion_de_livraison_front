@@ -3,13 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:8081/api/auth'; // Update with your API URL
 
-  private apiUrl = 'http://localhost:8081/api/auth';  // Update with your API URL
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, motdepasse: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, motdepasse }).pipe(
@@ -25,7 +24,6 @@ export class AuthService {
   registerCommercant(commercantData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/registerCommercant`, commercantData);
   }
-  
   registerLivreur(livreurData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/registerLivreur`, livreurData);
   }

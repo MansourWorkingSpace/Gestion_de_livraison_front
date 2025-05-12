@@ -2,17 +2,21 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { InputFieldComponent } from "../components/input-field/input-field.component";
-import { SubmitButtonComponent } from "../components/submit-button/submit-button.component";
+import { InputFieldComponent } from '../components/input-field/input-field.component';
+import { SubmitButtonComponent } from '../components/submit-button/submit-button.component';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-register-commercant',
   standalone: true,
-  imports: [FormsModule, InputFieldComponent, SubmitButtonComponent,CommonModule],
+  imports: [
+    FormsModule,
+    InputFieldComponent,
+    SubmitButtonComponent,
+    CommonModule,
+  ],
   templateUrl: './register-commercant.component.html',
-  styleUrl: './register-commercant.component.css'
+  styleUrl: './register-commercant.component.css',
 })
 export class RegisterCommercantComponent {
   nom: string = '';
@@ -36,10 +40,10 @@ export class RegisterCommercantComponent {
       age: Number(this.age),
       tlf: this.tlf,
       email: this.email,
-      statut: 'commercant',
+      statut: 'COMMERÇANT', // Make sure this matches the backend enum (upper case and accents)
       motdepasse: this.motdepasse,
-      photodeprofil: this.photodeprofil
-      // Add commercant-specific fields here
+      photodeprofil: this.photodeprofil || '/images/photoProfil.jpg', // Default value for photo if empty
+      // Add commercant-specific fields if necessary (like adresse, zip, etc.)
     };
 
     this.authService.registerCommercant(commercantData).subscribe({
@@ -54,7 +58,7 @@ export class RegisterCommercantComponent {
         } else {
           this.errorMessage = 'Registration failed. Please try again.';
         }
-      }
+      },
     });
   }
 }

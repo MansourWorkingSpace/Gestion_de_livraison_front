@@ -23,7 +23,7 @@ export class LoginComponent {
     .subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        this.router.navigate(['/dashbord']);
+        this.router.navigate(['/dashbordClient']);
       },
       error: (err) => {
         console.error('Login failed', err);
