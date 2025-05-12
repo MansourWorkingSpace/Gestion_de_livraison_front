@@ -40,7 +40,7 @@ export class RegisterCommercantComponent {
       age: Number(this.age),
       tlf: this.tlf,
       email: this.email,
-      statut: 'COMMERÇANT', // Make sure this matches the backend enum (upper case and accents)
+      statut: 'commercant', // Make sure this matches the backend enum (upper case and accents)
       motdepasse: this.motdepasse,
       photodeprofil: this.photodeprofil || '/images/photoProfil.jpg', // Default value for photo if empty
       // Add commercant-specific fields if necessary (like adresse, zip, etc.)
