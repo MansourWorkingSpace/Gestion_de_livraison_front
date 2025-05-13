@@ -7,14 +7,32 @@ import { RegisterLivreurComponent } from './register-livreur/register-livreur.co
 import { RegisterCommercantComponent } from './register-commercant/register-commercant.component';
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
 import { DashbordClientComponent } from './dashbord-client/dashbord-client.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { CommercantComponent } from './commercant/commercant.component';
+import { ClientComponent } from './client/client.component';
+import { LivreurComponent } from './livreur/livreur.component';
+import { ParametresComponent } from './parametres/parametres.component';
 
 export const routes: Routes = [
-    {path : '' , component : HomeComponent},
-    {path : 'register-client' , component : RegisterClientComponent},
-    {path : 'login' , component : LoginComponent },
-    {path : 'dashbord' , component : DashbordComponent},
-    {path : 'register-livreur' , component : RegisterLivreurComponent},
-    {path : 'register-commercant' , component : RegisterCommercantComponent},
-    {path : 'qr-scanner' , component : QrScannerComponent},
-    {path : 'dashbordClient' , component : DashbordClientComponent}
+    { path: '', component: HomeComponent },
+    { path: 'register-client', component: RegisterClientComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'dashbord', component: DashbordComponent },
+    { path: 'register-livreur', component: RegisterLivreurComponent },
+    { path: 'register-commercant', component: RegisterCommercantComponent },
+    { path: 'qr-scanner', component: QrScannerComponent },
+    { path: 'dashbordClient', component: DashbordClientComponent },
+
+    { path: '', component: DashboardAdminComponent },
+
+    { path: 'dashboardadm', component: DashboardAdminComponent },
+
+    { path: 'commercants', component: CommercantComponent },
+
+    { path: 'clients', component: ClientComponent },
+
+    { path: 'livreurs', component: LivreurComponent },
+
+    { path: 'settingsowner', component: ParametresComponent },
+
 ];

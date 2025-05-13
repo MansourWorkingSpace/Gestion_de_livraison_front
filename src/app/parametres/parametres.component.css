@@ -1,0 +1,251 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --tertiary-color: #dc3545;
+    --success-color: #28a745;
+    --error-color: #c00;
+    --background-color: #f8f9fa;
+    --card-bg-color: #ffffff;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --input-focus-color: rgba(0, 123, 255, 0.25);
+    --border-color: #ddd;
+    --text-color: #333;
+    --light-text-color: #666;
+    --form-bg-color: #f9f9f9;
+}
+
+.settings-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+h2 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+h3 {
+    color: var(--text-color);
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.user-info,
+.settings-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: transparent;
+    border-radius: 6px;
+}
+
+.info-group {
+    display: flex;
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+}
+
+.info-group label {
+    font-weight: bold;
+    width: 120px;
+    color: var(--text-color);
+}
+
+.info-group span {
+    color: var(--light-text-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+select {
+    width: 200px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--white);
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--input-focus-color);
+}
+
+.form-group input:required,
+.form-group textarea:required {
+    background-color: var(--white);
+}
+
+.form-group input:invalid,
+.form-group textarea:invalid {
+    border-color: var(--tertiary-color);
+}
+
+.info-group {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+.info-group label {
+    font-weight: 500;
+    color: var(--light-text-color);
+    margin-right: 0.5rem;
+}
+
+.role-display {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.role-note {
+    display: block;
+    color: var(--light-text-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+.actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.save-btn {
+    background-color: #34719f;
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #78adb3;
+}
+
+.save-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--input-focus-color);
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.error {
+    background-color: #fee;
+    color: var(--error-color);
+    border: 1px solid #fcc;
+}
+
+.success {
+    background-color: #efe;
+    color: var(--success-color);
+    border: 1px solid #cfc;
+}
+
+@media (max-width: 768px) {
+    .settings-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .save-btn {
+        .logs-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .log-entry {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--form-bg-color);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .log-entry .log-date {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .log-entry .log-message {
+            color: var(--light-text-color);
+        }
+
+        .log-actions {
+            margin-top: 1rem;
+            text-align: right;
+        }
+
+        .log-delete-btn {
+            background-color: var(--tertiary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .log-delete-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .log-delete-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--input-focus-color);
+        }
+
+        width: 100%;
+    }
+}
