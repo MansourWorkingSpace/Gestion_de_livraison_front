@@ -25,4 +25,8 @@ export class CommandeService {
   updateCommandeFromQrCode(id: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}/payer`, {});
   }
+
+  addCommande(commande: any) {
+    return this.http.post(`${this.baseUrl}/add`, commande);
+  }
 }

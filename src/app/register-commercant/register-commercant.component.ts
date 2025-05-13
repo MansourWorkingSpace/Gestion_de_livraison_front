@@ -40,10 +40,9 @@ export class RegisterCommercantComponent {
       age: Number(this.age),
       tlf: this.tlf,
       email: this.email,
-      statut: 'COMMERCANT', // Make sure this matches the backend enum (upper case and accents)
+      statut: 'COMMERCANT', 
       motdepasse: this.motdepasse,
-      photodeprofil: this.photodeprofil || '/images/photoProfil.jpg', // Default value for photo if empty
-      // Add commercant-specific fields if necessary (like adresse, zip, etc.)
+      photodeprofil: this.photodeprofil || '/images/photoProfil.jpg',
     };
 
     this.authService.registerCommercant(commercantData).subscribe({

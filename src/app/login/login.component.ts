@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { InputFieldComponent } from "../components/input-field/input-field.component";
-import { SubmitButtonComponent } from "../components/submit-button/submit-button.component";
+import { InputFieldComponent } from '../components/input-field/input-field.component';
+import { SubmitButtonComponent } from '../components/submit-button/submit-button.component';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +19,18 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    this.authService.login(this.email, this.motdepasse)
-    .subscribe({
+    this.authService.login(this.email, this.motdepasse).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        this.router.navigate(['/dashbordClient']);
+        if (response.statut === 'CLIENT') {
+          this.router.navigate(['/dashbordClient']);
+        }else if(response.statut === 'LIVREUR') {
+          this.router.navigate(['/dashbord']);
+        }else if (response.statut === 'ADMIN'){
+          this.router.navigate(['/dashbordAdmin']);
+        }else{
+          this.router.navigate(['/dashbordCommercant'])
+        }
       },
       error: (err) => {
         console.error('Login failed', err);
