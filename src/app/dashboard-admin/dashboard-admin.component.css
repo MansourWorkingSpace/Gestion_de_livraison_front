@@ -315,7 +315,7 @@ body {
 }
 
 .chart-card {
-    background: var(--white);
+    background: #fff;
     border-radius: 16px;
     padding: 25px;
     box-shadow: var(--shadow);
