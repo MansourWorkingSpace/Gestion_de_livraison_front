@@ -1,0 +1,129 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="user.jpg" alt="Profile" class="profile-img">
+            <h3 class="admin">Administrateur</h3>
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-item-container">
+                <a (click)="toggleUsersDropdown()" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Utilisateurs</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu" *ngIf="isUsersDropdownOpen">
+                    <a routerLink="/clients" class="dropdown-item">
+                        <i class="fas fa-user-friends"></i>
+                        Clients
+                    </a>
+                    <a routerLink="/commercants" class="dropdown-item">
+                        <i class="fas fa-store"></i>
+                        Commerçants
+                    </a>
+                    <a routerLink="/livreurs" class="dropdown-item">
+                        <i class="fas fa-truck"></i>
+                        Livreurs
+                    </a>
+                </div>
+
+                <a routerLink="/qrcode" class="nav-item">
+                    <i class="fas fa-qrcode"></i>
+                    QR Code
+                </a>
+                <a routerLink="/commandes" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Commandes
+                </a>
+                <a routerLink="/dashboard" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Statistiques
+                </a>
+                <a routerLink="/settings" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    Paramètres
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="dashboard-header">
+            <h1>Tableau de bord</h1>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p class="stat-label">Nombre total de clients</p>
+                    <h2 class="stat-value">{{ dashboardStats.totalClients }}</h2>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p class="stat-label">Nombre total de commandes</p>
+                    <h2 class="stat-value">{{ dashboardStats.totalOrders }}</h2>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info">
+                    <p class="stat-label">Revenu total</p>
+                    <h2 class="stat-value">{{ dashboardStats.totalRevenue }} DNT</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Activité des commandes</h3>
+                    <select class="month-select" (change)="onYearChange($event)">
+                        <option [value]="selectedYear - 1">{{ selectedYear - 1 }}</option>
+                        <option [value]="selectedYear" selected>{{ selectedYear }}</option>
+                        <option [value]="selectedYear + 1">{{ selectedYear + 1 }}</option>
+                    </select>
+                </div>
+                <div class="line-chart">
+                    <!-- Monthly stats visualization will be added here -->
+                    <div *ngFor="let month of monthlyStats | keyvalue">
+                        <div class="month-stat">
+                            <span>{{ month.key }}</span>
+                            <span>{{ month.value }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Répartition par ville</h3>
+                </div>
+                <div class="donut-chart">
+                    <!-- City distribution visualization will be added here -->
+                    <div *ngFor="let city of dashboardStats.cityDistribution | keyvalue">
+                        <div class="city-stat">
+                            <span>{{ city.key }}</span>
+                            <span>{{ city.value }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-charts">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Top Produits</h3>
+                </div>
+                <div class="product-list">
+                    <!-- Top products list -->
+                    <div *ngFor="let product of dashboardStats.topProducts">
+                        <div class="product-stat">
+                            <span>{{ product.name }}</span>
+                            <span>{{ product.count }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div> 
