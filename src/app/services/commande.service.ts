@@ -7,7 +7,7 @@ import { Commande } from '../models/commande';
   providedIn: 'root' // Le service est disponible globalement
 })
 export class CommandeService {
-  private baseUrl = 'http://localhost:1586/commandes'; // URL de l'API backend
+  private baseUrl = 'http://localhost:8081/commandes'; // URL de l'API backend
 
   constructor(private http: HttpClient) {}
 
