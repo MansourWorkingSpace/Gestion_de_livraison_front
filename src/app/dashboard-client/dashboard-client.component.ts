@@ -1,53 +1,95 @@
-import { Component, OnInit } from '@angular/core';
-import { ProduitService } from '../services/produit.service';
-import { Produit } from '../models/produit.model';
+import { Component, type OnInit } from "@angular/core";
+import { ProduitService } from "../services/produit.service";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { CommonModule } from '@angular/common'; 
+declare var bootstrap: any;
 
 @Component({
-  selector: 'app-dashboard-client',
-  templateUrl: './dashboard-client.component.html',
-    imports: [CommonModule], 
   standalone: true,
-  styleUrls: ['./dashboard-client.component.css']
+  selector: "app-dashboard-client",
+  imports: [CommonModule, FormsModule],
+  templateUrl: "./dashboard-client.component.html",
+  styleUrls: ["./dashboard-client.component.css"],
 })
 export class DashboardClientComponent implements OnInit {
-  produits: Produit[] = [];
+  produits: any[] = [];
+  cartItems: any[] = [];
+  cartTotal = 0;
+  showCart = false;
+
+  selectedProduct: any = null;
+  selectedQuantity = 1;
+  quantityModal: any;
 
   constructor(private produitService: ProduitService) {}
 
   ngOnInit(): void {
     this.produitService.getAllProduits().subscribe({
-      next: (data: Produit[]) => this.produits = data,
-      error: (err: any) => console.error('Error loading products:', err)
+      next: (data: any[]) => (this.produits = data),
+      error: (err: any) => console.error("Erreur chargement produits:", err),
     });
+
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      this.cartItems = JSON.parse(savedCart);
+      this.calculateTotal();
+    }
+
+    this.quantityModal = new bootstrap.Modal("#quantityModal");
   }
 
+  openQuantityModal(product: any) {
+    this.selectedProduct = JSON.parse(JSON.stringify(product));
+    this.selectedQuantity = 1;
+    this.quantityModal.show();
+  }
 
+  confirmAddToCart() {
+    if (!this.selectedProduct || this.selectedQuantity <= 0) return;
 
-  ajouterAuxFavoris(produit: any) {
-  console.log('Produit ajouté aux favoris :', produit);
-  // Tu peux ici appeler un service ou changer une propriété
-}
+    // Always add as a new cart item (don't merge quantities)
+    const newCartItem = {
+      id_prod: this.selectedProduct.id_prod,
+      nomProd: this.selectedProduct.nomProd,
+      prix: this.selectedProduct.prix,
+      quantity: this.selectedQuantity,
+      // Add unique identifier
+      cartItemId: Date.now() + Math.random().toString(36).substring(2)
+    };
 
-ajouterAuPanier(produit: any) {
-  console.log('Produit ajouté au panier :', produit);
-  // Ex: this.panierService.ajouter(produit);
-}
+    this.cartItems.push(newCartItem);
+    this.calculateTotal();
+    this.saveCartToLocalStorage();
 
-voirDetails(idProd: number) {
-  console.log('Voir détails du produit ID :', idProd);
-  // Ex: this.router.navigate(['/produit', idProd]);
-}
+    // Reset selection
+    this.selectedProduct = null;
+    this.selectedQuantity = 1;
+    this.showCart = true;
+  }
 
-modifierProduit(produit: any) {
-  console.log('Modifier produit :', produit);
-  // Rediriger vers un formulaire de modification si besoin
-}
+  calculateTotal() {
+    this.cartTotal = this.cartItems.reduce((sum, item) => sum + item.prix * item.quantity, 0);
+  }
 
-supprimerProduit(idProd: number) {
-  console.log('Supprimer produit ID :', idProd);
-  // Appel à ton service de suppression ici
-}
+  saveCartToLocalStorage() {
+    localStorage.setItem("cart", JSON.stringify(this.cartItems));
+  }
 
+  removeFromCart(index: number) {
+    this.cartItems.splice(index, 1);
+    this.calculateTotal();
+    this.saveCartToLocalStorage();
+  }
+
+  checkout() {
+    alert(`Commande passée pour ${this.cartTotal} TND`);
+    this.cartItems = [];
+    this.cartTotal = 0;
+    localStorage.removeItem("cart");
+  }
+
+  toggleCart() {
+    this.showCart = !this.showCart;
+  }
 }

@@ -1,159 +1,87 @@
-<!--
+<!-- Quantity Modal -->
+<div class="modal fade" id="quantityModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Quantité pour {{ selectedProduct?.nomProd }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="selectedProduct = null"></button>
+      </div>
+      <div class="modal-body">
+        <input type="number" id="quantityInput" class="form-control" [(ngModel)]="selectedQuantity" min="1">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" (click)="selectedProduct = null">
+          Annuler
+        </button>
+        <button class="btn btn-primary" (click)="confirmAddToCart()" [disabled]="selectedQuantity <= 0" data-bs-dismiss="modal">
+          Ajouter au panier
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Cart Bubble -->
+<button class="btn btn-primary cart-toggle" (click)="toggleCart()">
+  <i class="bi bi-cart"></i>
+  <span class="badge bg-danger">{{ cartItems.length }}</span>
+</button>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" [class.active]="showCart">
+  <div class="cart-header">
+    <h3>Votre Panier</h3>
+    <button class="btn btn-sm btn-outline-secondary" (click)="toggleCart()">
+      &times;
+    </button>
+  </div>
+
+  <div class="cart-items">
+    <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+      <div class="item-info">
+        <h6>{{ item.nomProd }}</h6>
+        <p>{{ item.prix }} TND x {{ item.quantity }}</p>
+      </div>
+      <button class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">
+        &times;
+      </button>
+    </div>
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      Votre panier est vide
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <h5>Total: {{ cartTotal }} TND</h5>
+    <button class="btn btn-primary w-100" (click)="checkout()" [disabled]="cartItems.length === 0">
+      Passer Commande
+    </button>
+  </div>
+</div>
+
+<!-- Product Cards -->
 <div class="container mt-4">
   <h2 class="mb-4">Liste des Produits</h2>
-
   <div class="row">
     <div class="col-md-4" *ngFor="let prod of produits">
       <div class="card mb-4 shadow-sm">
-        <img [src]="prod.image" class="card-img-top" alt="{{ prod.nomProd }}" *ngIf="prod.image">
+        <img [src]="prod.image" class="card-img-top" alt="{{ prod.nomProd }}" *ngIf="prod.image" width="100" height="200">
         <div class="card-body">
           <h5 class="card-title">{{ prod.nomProd }}</h5>
           <p class="card-text">{{ prod.description }}</p>
           <p><strong>Prix:</strong> {{ prod.prix }} TND</p>
           <p><strong>Catégorie:</strong> {{ prod.categorie }}</p>
           <p><strong>Quantité:</strong> {{ prod.quantity }}</p>
-          <p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <button class="btn btn-sm btn-primary" (click)="openQuantityModal(prod)" [disabled]="!prod.disponibilite">
+              <i class="bi bi-cart-plus"> Ajouter au panier</i>
+            </button>
             <span class="badge" [ngClass]="prod.disponibilite ? 'bg-success' : 'bg-danger'">
-              {{ prod.disponibilite ? 'Disponible' : 'Indisponible' }}
+              {{ prod.disponibilite ? "Disponible" : "Indisponible" }}
             </span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
-
-<!-- <div class="container mt-4">
-  <h2>Produits</h2>
-
-  <div class="card p-3 mb-3">
-    <h5>Produit 1</h5>
-    <p>Un exemple de description du produit.</p>
-    <span class="badge bg-success">Disponible</span>
-  </div>
-
-  <div class="card p-3 mb-3">
-    <h5>Produit 2</h5>
-    <p>Une autre description pour tester l'affichage.</p>
-    <span class="badge bg-danger">Non disponible</span>
-  </div>
-</div>
--->
-
-<!--
-<div class="container mt-5">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let produit of produits">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Image du produit">
-        <div class="card-body">
-          <h5 class="card-title">{{ produit.nomProd }}</h5>
-          <p class="card-text">{{ produit.description }}</p>
-          <p><strong>Catégorie:</strong> {{ produit.categorie }}</p>
-          <p><strong>Prix:</strong> {{ produit.prix }} DT</p>
-          <p>
-            <span class="badge" [ngClass]="produit.disponibilite ? 'bg-success' : 'bg-danger'">
-              {{ produit.disponibilite ? 'Disponible' : 'Indisponible' }}
-            </span>
-          </p>
-        </div>
-        <div class="card-footer d-flex justify-content-between flex-wrap">
-          <button class="btn btn-outline-danger btn-sm me-1">❤️ Favori</button>
-          <button class="btn btn-primary btn-sm me-1">🛒 Ajouter</button>
-          <button class="btn btn-info btn-sm me-1">🔍 Détails</button>
-          <button class="btn btn-warning btn-sm me-1">✏️ Modifier</button>
-          <button class="btn btn-danger btn-sm">🗑️ Supprimer</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
-
-<div class="container mt-5">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <!-- Produit 1 -->
-    <div class="col">
-      <div class="card" style="max-width: 18rem; border-radius: 10px;">
-        <img src="https://tse4.mm.bing.net/th?id=OIP.kdHvAEGtQ6N0soVnu5Bp1AHaHa&pid=Api&P=0&h=220" class="card-img-top" alt="Produit 1">
-        <div class="card-body">
-          <h5 class="card-title">Produit 1</h5>
-          <p class="card-text">Une courte description du produit ici.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0"><strong>Prix:</strong> 19.99 DT</p>
-            <span class="badge bg-success">Disponible</span>
           </div>
         </div>
-        <div class="card-footer d-flex justify-content-between">
-          <button class="btn btn-outline-danger btn-sm"><i class="bi bi-heart"></i> Favori</button>
-          <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Ajouter au panier</button>
-          <button class="btn btn-info btn-sm"><i class="bi bi-search"></i> Détails</button>
-        </div>
       </div>
     </div>
-
-    <!-- Produit 2 -->
-    <div class="col">
-      <div class="card" style="max-width: 18rem; border-radius: 10px;">
-        <img src="https://d15k8dan9eyvwr.cloudfront.net/7617-tm_thickbox_default/robe-vert-fonce-de-ceremonie-fille-demoiselle-d-honneur-110-160cm.jpg" class="card-img-top" alt="Produit 2">
-        <div class="card-body">
-          <h5 class="card-title">Produit 2</h5>
-          <p class="card-text">Description courte du produit 2.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0"><strong>Prix:</strong> 29.99 DT</p>
-            <span class="badge bg-success">Disponible</span>
-          </div>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-          <button class="btn btn-outline-danger btn-sm"><i class="bi bi-heart"></i> Favori</button>
-          <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Ajouter au panier</button>
-          <button class="btn btn-info btn-sm"><i class="bi bi-search"></i> Détails</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produit 3 -->
-    <div class="col">
-      <div class="card" style="max-width: 18rem; border-radius: 10px;">
-        <img src="https://i.pinimg.com/originals/0c/59/4d/0c594dd526a783599cbb115643984bce.jpg" class="card-img-top" alt="Produit 3">
-        <div class="card-body">
-          <h5 class="card-title">Produit 3</h5>
-          <p class="card-text">Une autre description du produit 3.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0"><strong>Prix:</strong> 39.99 DT</p>
-            <span class="badge bg-success">Disponible</span>
-          </div>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-          <button class="btn btn-outline-danger btn-sm"><i class="bi bi-heart"></i> Favori</button>
-          <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Ajouter au panier</button>
-          <button class="btn btn-info btn-sm"><i class="bi bi-search"></i> Détails</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produit 4 -->
-    <div class="col">
-      <div class="card" style="max-width: 18rem; border-radius: 10px;">
-        <img src="https://d15k8dan9eyvwr.cloudfront.net/3243-tm_thickbox_default/robe-de-crmonie-rose-petite-fille-demoiselle-d-honneur-manches-longues-it5020.jpg" class="card-img-top" alt="Produit 4">
-        <div class="card-body">
-          <h5 class="card-title">Produit 4</h5>
-          <p class="card-text">Description du produit 4, encore un autre item à découvrir !</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="mb-0"><strong>Prix:</strong> 49.99 DT</p>
-            <span class="badge bg-danger">En rupture de stock</span>
-          </div>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-          <button class="btn btn-outline-danger btn-sm"><i class="bi bi-heart"></i> Favori</button>
-          <button class="btn btn-primary btn-sm"><i class="bi bi-cart-plus"></i> Ajouter au panier</button>
-          <button class="btn btn-info btn-sm"><i class="bi bi-search"></i> Détails</button>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
