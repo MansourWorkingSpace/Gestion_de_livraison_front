@@ -8,6 +8,8 @@ import { RegisterCommercantComponent } from './register-commercant/register-comm
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 import { DashbordAdminComponent } from './dashbord-admin/dashbord-admin.component';
+import { ClientComponent } from './components/client/client.component';
+import { CommercantComponent } from './components/commercant/commercant.component';
 
 
 export const routes: Routes = [
@@ -19,5 +21,7 @@ export const routes: Routes = [
     {path : 'register-commercant' , component : RegisterCommercantComponent},
     {path : 'qr-scanner' , component : QrScannerComponent},
     {path : 'dashbordClient' , component :DashboardClientComponent},
-    {path : 'dashbordAdmin' , component : DashbordAdminComponent}
+    {path : 'dashbordAdmin' , component : DashbordAdminComponent},
+    {path : 'clients' , component: ClientComponent},
+    {path : 'commercants' , component: CommercantComponent}
 ];

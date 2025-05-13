@@ -9,9 +9,9 @@ import { provideToastr } from 'ngx-toastr';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(), // Provide HttpClient globally
-    provideRouter(routes) // Provide routing if your app uses routes
-    , provideAnimations() // Provide animations if your app uses them
+    provideHttpClient(),
+    provideRouter(routes) 
+    , provideAnimations() 
     ,provideToastr({
       timeOut: 3000,
       positionClass: 'toast-top-right',
