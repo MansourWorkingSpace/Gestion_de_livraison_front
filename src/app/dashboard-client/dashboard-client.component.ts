@@ -1,16 +1,17 @@
-import { Component, type OnInit } from "@angular/core";
-import { ProduitService } from "../services/produit.service";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { Component, type OnInit } from '@angular/core';
+import { ProduitService } from '../services/produit.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CommandeService } from '../services/commande.service';
 
 declare var bootstrap: any;
 
 @Component({
   standalone: true,
-  selector: "app-dashboard-client",
+  selector: 'app-dashboard-client',
   imports: [CommonModule, FormsModule],
-  templateUrl: "./dashboard-client.component.html",
-  styleUrls: ["./dashboard-client.component.css"],
+  templateUrl: './dashboard-client.component.html',
+  styleUrls: ['./dashboard-client.component.css'],
 })
 export class DashboardClientComponent implements OnInit {
   produits: any[] = [];
@@ -22,21 +23,24 @@ export class DashboardClientComponent implements OnInit {
   selectedQuantity = 1;
   quantityModal: any;
 
-  constructor(private produitService: ProduitService) {}
+  constructor(
+    private produitService: ProduitService,
+    private commandeService: CommandeService
+  ) {}
 
   ngOnInit(): void {
     this.produitService.getAllProduits().subscribe({
       next: (data: any[]) => (this.produits = data),
-      error: (err: any) => console.error("Erreur chargement produits:", err),
+      error: (err: any) => console.error('Erreur chargement produits:', err),
     });
 
-    const savedCart = localStorage.getItem("cart");
+    const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       this.cartItems = JSON.parse(savedCart);
       this.calculateTotal();
     }
 
-    this.quantityModal = new bootstrap.Modal("#quantityModal");
+    this.quantityModal = new bootstrap.Modal('#quantityModal');
   }
 
   openQuantityModal(product: any) {
@@ -55,7 +59,7 @@ export class DashboardClientComponent implements OnInit {
       prix: this.selectedProduct.prix,
       quantity: this.selectedQuantity,
       // Add unique identifier
-      cartItemId: Date.now() + Math.random().toString(36).substring(2)
+      cartItemId: Date.now() + Math.random().toString(36).substring(2),
     };
 
     this.cartItems.push(newCartItem);
@@ -69,11 +73,14 @@ export class DashboardClientComponent implements OnInit {
   }
 
   calculateTotal() {
-    this.cartTotal = this.cartItems.reduce((sum, item) => sum + item.prix * item.quantity, 0);
+    this.cartTotal = this.cartItems.reduce(
+      (sum, item) => sum + item.prix * item.quantity,
+      0
+    );
   }
 
   saveCartToLocalStorage() {
-    localStorage.setItem("cart", JSON.stringify(this.cartItems));
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
   removeFromCart(index: number) {
@@ -83,10 +90,36 @@ export class DashboardClientComponent implements OnInit {
   }
 
   checkout() {
+    const client = { id: 1 }; // Replace with actual logged-in client
+    const now = new Date();
+
+    for (const item of this.cartItems) {
+      const commande = {
+        client: client,
+        adresse: 'Adresse ici',
+        codePostale: '1234',
+        statut: 'EN_ATTENTE',
+        dateCmd: now,
+        estpayee: false,
+        produit: { idProd: item.id_prod },
+        quantity: item.quantity,
+        prixht: item.prix * item.quantity,
+        prixUnitaire: item.prix,
+        prixTotale: item.prix * item.quantity,
+        tlf: '00000000',
+        qrCode: null,
+      };
+
+      this.commandeService.addCommande(commande).subscribe({
+        next: (res) => console.log('Commande ajoutée', res),
+        error: (err) => console.error('Erreur ajout commande', err),
+      });
+    }
+
     alert(`Commande passée pour ${this.cartTotal} TND`);
     this.cartItems = [];
     this.cartTotal = 0;
-    localStorage.removeItem("cart");
+    localStorage.removeItem('cart');
   }
 
   toggleCart() {
