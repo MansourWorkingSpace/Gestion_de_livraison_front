@@ -1,0 +1,87 @@
+<!-- Quantity Modal -->
+<div class="modal fade" id="quantityModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Quantité pour {{ selectedProduct?.nomProd }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="selectedProduct = null"></button>
+      </div>
+      <div class="modal-body">
+        <input type="number" id="quantityInput" class="form-control" [(ngModel)]="selectedQuantity" min="1">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" (click)="selectedProduct = null">
+          Annuler
+        </button>
+        <button class="btn btn-primary" (click)="confirmAddToCart()" [disabled]="selectedQuantity <= 0" data-bs-dismiss="modal">
+          Ajouter au panier
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Cart Bubble -->
+<button class="btn btn-primary cart-toggle" (click)="toggleCart()">
+  <i class="bi bi-cart"></i>
+  <span class="badge bg-danger">{{ cartItems.length }}</span>
+</button>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" [class.active]="showCart">
+  <div class="cart-header">
+    <h3>Votre Panier</h3>
+    <button class="btn btn-sm btn-outline-secondary" (click)="toggleCart()">
+      &times;
+    </button>
+  </div>
+
+  <div class="cart-items">
+    <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+      <div class="item-info">
+        <h6>{{ item.nomProd }}</h6>
+        <p>{{ item.prix }} TND x {{ item.quantity }}</p>
+      </div>
+      <button class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">
+        &times;
+      </button>
+    </div>
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      Votre panier est vide
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <h5>Total: {{ cartTotal }} TND</h5>
+    <button class="btn btn-primary w-100" (click)="checkout()" [disabled]="cartItems.length === 0">
+      Passer Commande
+    </button>
+  </div>
+</div>
+
+<!-- Product Cards -->
+<div class="container mt-4">
+  <h2 class="mb-4">Liste des Produits</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let prod of produits">
+      <div class="card mb-4 shadow-sm">
+        <img [src]="prod.image" class="card-img-top" alt="{{ prod.nomProd }}" *ngIf="prod.image" width="100" height="200">
+        <div class="card-body">
+          <h5 class="card-title">{{ prod.nomProd }}</h5>
+          <p class="card-text">{{ prod.description }}</p>
+          <p><strong>Prix:</strong> {{ prod.prix }} TND</p>
+          <p><strong>Catégorie:</strong> {{ prod.categorie }}</p>
+          <p><strong>Quantité:</strong> {{ prod.quantity }}</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <button class="btn btn-sm btn-primary" (click)="openQuantityModal(prod)" [disabled]="!prod.disponibilite">
+              <i class="bi bi-cart-plus"> Ajouter au panier</i>
+            </button>
+            <span class="badge" [ngClass]="prod.disponibilite ? 'bg-success' : 'bg-danger'">
+              {{ prod.disponibilite ? "Disponible" : "Indisponible" }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

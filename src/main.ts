@@ -6,6 +6,7 @@ import { routes } from './app/app.routes'; // Ensure routes are defined
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(), // Provide HttpClient globally

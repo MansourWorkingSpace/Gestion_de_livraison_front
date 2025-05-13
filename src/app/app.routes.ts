@@ -6,12 +6,12 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { RegisterLivreurComponent } from './register-livreur/register-livreur.component';
 import { RegisterCommercantComponent } from './register-commercant/register-commercant.component';
 import { QrScannerComponent } from './components/qr-scanner/qr-scanner.component';
-import { DashbordClientComponent } from './dashbord-client/dashbord-client.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { CommercantComponent } from './commercant/commercant.component';
 import { ClientComponent } from './client/client.component';
 import { LivreurComponent } from './livreur/livreur.component';
 import { ParametresComponent } from './parametres/parametres.component';
+import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -21,7 +21,7 @@ export const routes: Routes = [
     { path: 'register-livreur', component: RegisterLivreurComponent },
     { path: 'register-commercant', component: RegisterCommercantComponent },
     { path: 'qr-scanner', component: QrScannerComponent },
-    { path: 'dashbordClient', component: DashbordClientComponent },
+    { path: 'dashbordClient', component: DashboardClientComponent },
 
     { path: '', component: DashboardAdminComponent },
 
@@ -35,4 +35,12 @@ export const routes: Routes = [
 
     { path: 'settingsowner', component: ParametresComponent },
 
+    { path: '', component: HomeComponent },
+    { path: 'register-client', component: RegisterClientComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'dashbord', component: DashbordComponent },
+    { path: 'register-livreur', component: RegisterLivreurComponent },
+    { path: 'register-commercant', component: RegisterCommercantComponent },
+    { path: 'qr-scanner', component: QrScannerComponent },
+    { path: 'dashbordClient', component: DashboardClientComponent },
 ];

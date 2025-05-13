@@ -1,0 +1,78 @@
+/* Floating Cart Button (Bubble Style) */
+.cart-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050;
+  border-radius: 50%;
+  padding: 12px 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Red Badge Inside Bubble */
+.cart-toggle .badge {
+  font-size: 0.7rem;
+  padding: 5px 7px;
+  border-radius: 50%;
+}
+
+/* Cart Sidebar (Hidden by default) */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 320px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Show when active */
+.cart-sidebar.active {
+  right: 0;
+}
+
+/* Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+/* Items */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 5px;
+}
+
+.item-info h6 {
+  margin: 0;
+}
+
+.cart-footer {
+  margin-top: auto;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}
+
+.empty-cart {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+}

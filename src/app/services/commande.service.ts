@@ -7,7 +7,7 @@ import { Commande } from '../models/commande';
   providedIn: 'root' // Le service est disponible globalement
 })
 export class CommandeService {
-  private baseUrl = 'http://localhost:1586/commandes'; // URL de l'API backend
+  private baseUrl = 'http://localhost:8081/commandes'; // URL de l'API backend
 
   constructor(private http: HttpClient) {}
 
@@ -24,5 +24,9 @@ export class CommandeService {
   // Scanner un code QR pour mettre à jour une commande
   updateCommandeFromQrCode(id: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}/payer`, {});
+  }
+
+  addCommande(commande: any) {
+    return this.http.post(`${this.baseUrl}/add`, commande);
   }
 }

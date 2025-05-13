@@ -2,16 +2,21 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { InputFieldComponent } from "../components/input-field/input-field.component";
-import { SubmitButtonComponent } from "../components/submit-button/submit-button.component";
+import { InputFieldComponent } from '../components/input-field/input-field.component';
+import { SubmitButtonComponent } from '../components/submit-button/submit-button.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register-livreur',
   standalone: true,
-  imports: [FormsModule, InputFieldComponent, SubmitButtonComponent,CommonModule],
+  imports: [
+    FormsModule,
+    InputFieldComponent,
+    SubmitButtonComponent,
+    CommonModule,
+  ],
   templateUrl: './register-livreur.component.html',
-  styleUrl: './register-livreur.component.css'
+  styleUrl: './register-livreur.component.css',
 })
 export class RegisterLivreurComponent {
   nom: string = '';
@@ -19,7 +24,7 @@ export class RegisterLivreurComponent {
   age: number = 0;
   tlf: string = '';
   email: string = '';
-  statut: string = 'livreur';
+  statut: string = 'LIVREUR';
   motdepasse: string = '';
   photodeprofil: string = '/images/photoProfil.jpg';
   tarifLivraison: number = 0;
@@ -37,11 +42,11 @@ export class RegisterLivreurComponent {
       age: Number(this.age),
       tlf: this.tlf,
       email: this.email,
-      statut: 'livreur',
+      statut: 'LIVREUR', // <-- FIXED
       motdepasse: this.motdepasse,
       photodeprofil: this.photodeprofil,
       tarifLivraison: Number(this.tarifLivraison),
-      tarifRetour: Number(this.tarifRetour)
+      tarifRetour: Number(this.tarifRetour),
     };
 
     this.authService.registerLivreur(livreurData).subscribe({
@@ -56,7 +61,7 @@ export class RegisterLivreurComponent {
         } else {
           this.errorMessage = 'Registration failed. Please try again.';
         }
-      }
+      },
     });
   }
 }
