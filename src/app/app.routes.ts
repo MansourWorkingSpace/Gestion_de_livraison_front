@@ -12,6 +12,7 @@ import { ClientComponent } from './client/client.component';
 import { LivreurComponent } from './livreur/livreur.component';
 import { ParametresComponent } from './parametres/parametres.component';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
+import { DashbordAdminComponent } from './dashbord-admin/dashbord-admin.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -43,4 +44,16 @@ export const routes: Routes = [
     { path: 'register-commercant', component: RegisterCommercantComponent },
     { path: 'qr-scanner', component: QrScannerComponent },
     { path: 'dashbordClient', component: DashboardClientComponent },
+
+    { path: '', component: HomeComponent },
+    { path: 'register-client', component: RegisterClientComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'dashbord', component: DashbordComponent },
+    { path: 'register-livreur', component: RegisterLivreurComponent },
+    { path: 'register-commercant', component: RegisterCommercantComponent },
+    { path: 'qr-scanner', component: QrScannerComponent },
+    { path: 'dashbordClient', component: DashboardClientComponent },
+    { path: 'dashbordAdmin', component: DashbordAdminComponent },
+    { path: 'clients', component: ClientComponent },
+    { path: 'commercants', component: CommercantComponent }
 ];

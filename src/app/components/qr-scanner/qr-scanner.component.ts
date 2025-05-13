@@ -14,9 +14,9 @@ export class QrScannerComponent implements AfterViewInit {
   scannedId: string | null = null;
 
   constructor(
-    private commandeService: CommandeService, // Injectez le service
-    private router: Router, // Injectez le Router
-    private toastr: ToastrService // Injectez ToastrService pour les notifications
+    private commandeService: CommandeService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngAfterViewInit(): void {
