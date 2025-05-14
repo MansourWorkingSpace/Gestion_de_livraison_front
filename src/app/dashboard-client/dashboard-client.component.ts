@@ -3,6 +3,7 @@ import { ProduitService } from '../services/produit.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommandeService } from '../services/commande.service';
+import { Router } from '@angular/router';
 
 declare var bootstrap: any;
 
@@ -25,7 +26,8 @@ export class DashboardClientComponent implements OnInit {
 
   constructor(
     private produitService: ProduitService,
-    private commandeService: CommandeService
+    private commandeService: CommandeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +90,7 @@ export class DashboardClientComponent implements OnInit {
     this.calculateTotal();
     this.saveCartToLocalStorage();
   }
-
+/*
   checkout() {
     const client = { id: 1 }; // Replace with actual logged-in client
     const now = new Date();
@@ -121,6 +123,11 @@ export class DashboardClientComponent implements OnInit {
     this.cartTotal = 0;
     localStorage.removeItem('cart');
   }
+    */
+   checkout() {
+              this.router.navigate(['/dashbord']); // Use Router to navigate
+
+    }
 
   toggleCart() {
     this.showCart = !this.showCart;
